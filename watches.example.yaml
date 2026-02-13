@@ -1,0 +1,35 @@
+# Polymarket Watcher - Example Configuration
+# Copy this file to watches.yaml and edit with real market slugs.
+#
+# Find slugs from Polymarket URLs:
+#   https://polymarket.com/event/will-eth-hit-5000  ->  slug: "will-eth-hit-5000"
+#
+# Thresholds are YES token prices (0.0 to 1.0), representing implied probability.
+#   0.25 = 25% implied probability
+#   0.50 = 50% implied probability
+
+poll_interval: 30  # seconds between price checks
+
+watches:
+  - slug: "will-ethereum-hit-5000"
+    name: "ETH $5000"
+    alerts:
+      - direction: above
+        threshold: 0.25
+        message: "ETH $5k is heating up! (>25%)"
+      - direction: below
+        threshold: 0.10
+        message: "ETH $5k looking unlikely (<10%)"
+
+  - slug: "will-bitcoin-hit-150000"
+    name: "BTC $150k"
+    alerts:
+      - direction: above
+        threshold: 0.50
+        message: "BTC $150k hit 50%!"
+      - direction: above
+        threshold: 0.75
+        message: "BTC $150k looking very likely (>75%)"
+      - direction: below
+        threshold: 0.20
+        message: "BTC $150k fading (<20%)"
